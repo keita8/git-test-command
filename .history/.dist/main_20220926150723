@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `fv_user`;
+
+CREATE TABLE `t_user`(
+    'id_user' INT NOT NULL PRIMARY KEY,
+    'user_name' VARCHAR,
+    'user_birthday' DATE
+);

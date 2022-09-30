@@ -1,0 +1,30 @@
+CREATE DATABASE IF NOT EXISTS `fv_user`;
+
+CREATE TABLE `t_user`
+(
+    `id_user` INT NOT NULL PRIMARY KEY,
+    `user_name` VARCHAR(60) NOT NULL,
+    `user_birthday` DATE
+);
+
+ALTER TABLE  `t_user`
+MODIFY `user_birthday` DATE NOT NULL;
+ALTER TABLE  `t_user`
+MODIFY `id_user` TINYINT(2);
+
+CREATE DATABASE IF NOT EXISTS `cours_sql`;
+USE `cours_sql`;
+
+CREATE TABLE IF NOT EXISTS `table_users`(
+    'id_user'
+)
+
+SHOW TABLE STATUS;
+
+-- LES CONTRAINTES SQL 
+/* 
+ LES CONTRAINTES SONT L'ENSEMBLE DES REGLES QU'ON FIXE LORS DE L'UTILISATION D'UNE DATABASE
+
+ */
+
+--

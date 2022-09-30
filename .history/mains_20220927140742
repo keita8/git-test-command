@@ -1,0 +1,5 @@
+--------------  LES PRIVILÈGES SQL -------------
+//
+
+
+CREATE DATABASE IF NOT EXISTS

@@ -1,0 +1,35 @@
+--------------  LES PRIVILÈGES SQL -------------
+/*
+PRIVILÈGES SONT LES DROITS D'ACCÈS QU'ON ACCORDE ADD
+À UN UTILISATEUR SUR UN SITE OU UNE BASE DE DONNÉE
+
+select current_user()  : affiche l'utilisateur courant
+select user from mysql.user : affiche tous les utilisateurs
+
+
+-- POUR ACCORDER UN PRIVILÈGE À UN UTILISATEUR ON TAPE
+
+GRANT PRIVILEGES_NAME ON db.table TO 'abdul'@'localhost'; 
+
+QUI SE TRADUIT PAR :
+accorder privilèges sur cette table de cette db à cet utilisateur
+
+*/
+
+-- CRÉER UN UTILISATEUR
+CREATE USER 'abdul'@'localhost' IDENTIFIED BY 'mamaisha';
+
+-- DÉFINIR UN NOUVEAU MOT DE PASSE POUR UN USER PARTICULIER
+ALTER USER 'abdul'@'localhost' IDENTIFIED BY 'new_password';
+
+
+-- RENOMMER UN UTILISATEUR
+RENAME USER 'abdul'@'localhost' TO 'mamaisha'@'localhost';
+
+
+-- SUPPRIMER UN UTILISATEUR
+DROP USER 'abdul'@'localhost';
+
+
+-- COMMANDE PERMETTANT D'ACCORDER OU DE RETIRER DES DROITS À UN ADD
+-- UTILISATEUR 

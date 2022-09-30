@@ -1,0 +1,93 @@
+CREATE DATABASE IF NOT EXISTS `fv_user`;
+
+CREATE TABLE `t_user`
+(
+    `id_user` INT NOT NULL PRIMARY KEY,
+    `user_name` VARCHAR(60) NOT NULL,
+    `user_birthday` DATE
+);
+
+ALTER TABLE  `t_user`
+MODIFY `user_birthday` DATE NOT NULL;
+ALTER TABLE  `t_user`
+MODIFY `id_user` TINYINT(2);
+
+CREATE DATABASE IF NOT EXISTS `cours_sql`;
+USE `cours_sql`;
+
+CREATE TABLE IF NOT EXISTS `table_users`(
+    `id_user` INT NOT NULL, 
+    `user_name` VARCHAR(60) NOT NULL,
+    `user_email` VARCHAR(255) NOT NULL,
+    `user_registration` DATE NOT NULL,
+    `user_admin` BOOLEAN 
+);
+
+ALTER TABLE `table_users`
+ADD UNIQUE(`id_user`);
+
+ALTER TABLE `table_users`
+ADD UNIQUE(`user_email`);
+
+ALTER TABLE `table_users`
+MODIFY `user_admin` BOOLEAN DEFAULT(0);
+SHOW TABLE STATUS;
+
+ALTER TABLE `table_users`
+ADD CHECK(`user_admin` <= 10000);
+
+-- LES CONTRAINTES EN SQL 
+/* 
+ LES CONTRAINTES SONT L'ENSEMBLE DES REGLES QU'ON FIXE LORS DE L'UTILISATION D'UNE DATABASE
+
+AJOUTER UNE CONTRAINTE 
+ALTER TABLE `table_user`
+ALTER `my_table` SET `constrainte_name`
+
+RETIRER UNE CONTRAINTE 
+ALTER TABLE `table_user`
+ALTER `my_table` DROP `constrainte_name`
+
+
+DEFAULT  : Valeur par défaut à attribuer à un champ
+
+AJOUTER LA CONTRAINTE DEFAULT
+ALTER TABLE `table_user`
+ALTER `user_admin` SET DEFAULT 0;
+
+SUPPRIMER LA CONTRAINTE DEFAULT
+ALTER TABLE `table_user``
+ALTER `user_admin` DROP DEFAULT;
+
+
+AJOUTER LA CONTRAINTE CHECK
+ALTER TABLE `table_user``
+ADD CONSTRAINT chk CHECK(price >= 0 AND price <= 10000);
+
+SUPPRIMER LA CONTRAINTE CHECK
+ALTER TABLE `table_user``
+DROP CHECK  chk;
+
+
+DEFAUTL  : Valeur par défaut à attribuer à un champ
+NOT NULL : Champ obligatoire
+CHECK    : Vérifie si un champ respecte une certaine valeur (exple CHECK(prix >= 1000))
+
+
+---------- CONTRAINTE D'UNICITÉ ------------
+
+
+UNIQUE  : Valeur de champ unique (l'unicité d'un champ)
+
+AJOUTER LA CONTRAINTE UNIQUE
+ALTER TABLE `table_user``
+ADD CONSTRAINT uc_user UNIQUE(id_user, user_name);
+
+RETIRER LA CONTRAINTE UNIQUE
+ALTER TABLE `table_user``
+DROP INDEX uc_user;
+
+
+ */
+
+--

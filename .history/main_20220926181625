@@ -1,0 +1,139 @@
+CREATE DATABASE IF NOT EXISTS `fv_user`;
+
+CREATE TABLE `t_user`
+(
+    `id_user` INT NOT NULL PRIMARY KEY,
+    `user_name` VARCHAR(60) NOT NULL,
+    `user_birthday` DATE
+);
+
+ALTER TABLE  `t_user`
+MODIFY `user_birthday` DATE NOT NULL;
+ALTER TABLE  `t_user`
+MODIFY `id_user` TINYINT(2);
+
+CREATE DATABASE IF NOT EXISTS `cours_sql`;
+USE `cours_sql`;
+
+CREATE TABLE IF NOT EXISTS `table_users`(
+    `id_user` INT NOT NULL, 
+    `user_name` VARCHAR(60) NOT NULL,
+    `user_email` VARCHAR(255) NOT NULL,
+    `user_registration` DATE NOT NULL,
+    `user_admin` BOOLEAN 
+);
+
+CREATE TABLE IF NOT EXISTS `table_news`(
+    `id_news` INT AUTO_INCREMENT PRIMARY KEY NOT NULL, 
+    `news_title` VARCHAR(60) NOT NULL,
+    `news_content` TEXT NOT NULL,
+    `news_creation` DATE NOT NULL,
+    `news_author` INT NOT NULL,
+    FOREIGN KEY(`news_author`) REFERENCES `table_users`(`id_user`)
+);
+
+ALTER TABLE `table_users`
+MODIFY `id_user` INT NOT NULL PRIMARY KEY AUTO_INCREMENT;
+
+ALTER TABLE `table_users`
+ADD CONSTRAINT unk_user_name UNIQUE(`user_name`);
+
+ALTER TABLE `table_users`
+DROP CONSTRAINT unk_user_name;
+
+ALTER TABLE `table_users`
+ADD UNIQUE(`id_user`);
+
+ALTER TABLE `table_users`
+ADD UNIQUE(`user_email`);
+
+ALTER TABLE `table_users`
+MODIFY `user_admin` BOOLEAN DEFAULT(0);
+SHOW TABLE STATUS;
+
+ALTER TABLE `table_users`
+ADD CHECK(`user_admin` <= 10000);
+
+-- LES CONTRAINTES EN SQL 
+/* 
+ LES CONTRAINTES SONT L'ENSEMBLE DES REGLES QU'ON FIXE LORS DE L'UTILISATION D'UNE DATABASE
+
+AJOUTER UNE CONTRAINTE 
+ALTER TABLE `table_user`
+ALTER `my_table` SET `constrainte_name`
+
+RETIRER UNE CONTRAINTE 
+ALTER TABLE `table_user`
+ALTER `my_table` DROP `constrainte_name`
+
+
+DEFAULT  : Valeur par défaut à attribuer à un champ
+
+AJOUTER LA CONTRAINTE DEFAULT
+ALTER TABLE `table_user`
+ALTER `user_admin` SET DEFAULT 0;
+
+SUPPRIMER LA CONTRAINTE DEFAULT
+ALTER TABLE `table_user``
+ALTER `user_admin` DROP DEFAULT;
+
+
+AJOUTER LA CONTRAINTE CHECK
+ALTER TABLE `table_user``
+ADD CONSTRAINT chk CHECK(price >= 0 AND price <= 10000);
+
+SUPPRIMER LA CONTRAINTE CHECK
+ALTER TABLE `table_user``
+DROP CHECK  chk;
+
+
+DEFAULT  : Valeur par défaut à attribuer à un champ
+NOT NULL : Champ obligatoire
+CHECK    : Vérifie si un champ respecte une certaine valeur (exple CHECK(prix >= 1000))
+
+---------- CONTRAINTE D'UNICITÉ ------------
+
+PRIMARY KEY : Champ définit comme une clé primaire de la table
+
+AJOUTER LA CONTRAINTE CLÉ PRIMAIRE
+ALTER TABLE `table_user``
+ADD CONSTRAINT pk_user PRIMARY KEY(id_user, user_name);
+
+RETIRER LA CONTRAINTE CLÉ PRIMAIRE
+ALTER TABLE `table_user``
+DROP PRIMARY KEY;
+
+
+
+UNIQUE  : Valeur de champ unique (l'unicité d'un champ)
+
+AJOUTER LA CONTRAINTE UNIQUE
+ALTER TABLE `table_user``
+ADD CONSTRAINT uc_user UNIQUE(id_user, user_name);
+
+RETIRER LA CONTRAINTE UNIQUE
+ALTER TABLE `table_user``
+DROP INDEX uc_user;
+
+
+------------------ CLÉS ÉTRANGÈRES ---------------
+FOREIGN KEY  : Clé étrangère
+
+AJOUTER UNE CLÉ ÉTRANGÈRE
+
+ALTER TABLE `table_users`
+ADD CONSTRAINT fk_ FOREIGN KEY(`news_author`) REFERENCES `table_users`(`id_user`);
+
+RETIRER UNE CLÉ ÉTRANGÈRE
+
+ALTER TABLE `table_users`
+DROP FOREIGN KEY fk_
+
+
+---------------------- LES INDEX (IDEAL POUR LA LECTURE AVEC LE MOTEUR MYISAM) --------------------
+
+CREATE INDEX `idx_user` ON `table_user`(` user_name`)
+
+ */
+
+--

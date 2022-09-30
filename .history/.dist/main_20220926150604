@@ -1,0 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `user`;
+
+CREATE TABLE `t_user`(
+    'id_user' INT NOT NULL PRIMARY KEY,
+    'user_name' VAR
+)
